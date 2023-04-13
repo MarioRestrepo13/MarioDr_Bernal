@@ -1,19 +1,20 @@
 import './App.scss';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, {useState} from 'react';
 
 function App() {
 
   const [formulario, setFormulario] = useState({
-    email: '',
-    password: ''
+    numero_1: '',
+    numero_2: ''
   }); 
   
+
   const handleChange = (event) => {
-    const temporal = {...formulario}
+    const temporal = {...formulario} // copia el objeto quitando la referencia
     temporal[event.target.name] = event.target.value
     setFormulario(temporal)
   }
@@ -21,30 +22,31 @@ function App() {
     <div className="App">
       <Container>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control onChange={handleChange} name="email" type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={handleChange} name="password" type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          {formulario.email}
-          {formulario.password}
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+        <Row>
+          <Col>
+          <Form.Label>Numero 1</Form.Label>
+              <Form.Control onChange={handleChange} name="Numero 1" type="input"/>
+          <Form.Label>Numero 2</Form.Label>
+              <Form.Control onChange={handleChange} name="Numero 2" type="input"/>
+          </Col>
+      
+            <Col>
+              <Form.Label>Suma</Form.Label>
+              <Form.Control onChange={handleChange} name="Suma" type="+"/>
+            
+              <Form.Label>Resta</Form.Label>
+              <Form.Control onChange={handleChange} name="Resta" type="-"/>
+          
+              <Form.Label>Multiplicacion</Form.Label>
+              <Form.Control onChange={handleChange} name="Multiplicacion" type="/"/>
+              
+              <Form.Label>Division</Form.Label>
+              <Form.Control onChange={handleChange} name="Division" type="*"/>
+            </Col>
+          </Row>
         </Form>
       </Container>
     </div>
-
   );
 }
 
